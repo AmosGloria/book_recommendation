@@ -2,8 +2,8 @@ import React, { useReducer, useEffect, useCallback } from "react";
 import SelectField from "./components/select/page";
 import listOfGenreOption from "./store/genre.json";
 import listOfMoodOption from "./store/mood.json";
-import './components/styles/styles.css'
-
+import "./components/styles/styles.css";
+import ReactMarkdown from "react-markdown";
 
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
@@ -57,10 +57,16 @@ export default function App() {
 
     try {
       const prompt = `You are a professional librarian. 
-        Recommend 6 REAL books for a ${state.level} ${state.genre} reader feeling ${state.mood}.
-        Format each as: Title by Author (Year) - Explain why.
-        If you aren't 100% sure about a book's existence, do not include it.
-        `;
+                    Recommend 6 REAL, famous, and widely available books for a ${state.level} ${state.genre} reader feeling ${state.mood}.
+
+                    For EACH book, you MUST provide a link using this exact format:
+                    [Title of Book](https://www.google.com/search?tbm=bks&q=intitle:"Book+Title"+inauthor:"Author+Name")
+
+                    Rules:
+                    1. ONLY recommend real books that have an ISBN.
+                    2. The link must be a Google Books search link as formatted above.
+                    3. Format as: - [Title](Link) by Author (Year) - Why it's a good fit.
+                    4. No intro or outro text.`;
 
       const response = await fetch(
         `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`,
@@ -125,9 +131,11 @@ export default function App() {
       <br />
 
       {state.aiResponses.map((recommend, index) => (
-        <details key={index} name="recommendation">
+        <details key={index} name="recommendation" open>
           <summary>Recommendation {index + 1}</summary>
-          <p>{recommend}</p>
+          <div className="markdown-body">
+            <ReactMarkdown>{recommend}</ReactMarkdown>
+          </div>
         </details>
       ))}
     </section>
