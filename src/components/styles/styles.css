@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.app {
+  max-width: 720px;
+  margin: 40px auto;
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  position: relative;
+  top: 50px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1f2937;
+}
+
+section[role="dropdown"] {
+  margin-bottom: 16px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  font-size: 14px;
+  outline: none;
+}
+
+select:focus {
+  border-color: #6366f1;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #6366f1;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.05s ease, background 0.2s ease;
+}
+
+button:hover {
+  background: #4f46e5;
+}
+
+button:active {
+  transform: scale(0.99);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+details {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+p {
+  margin-top: 8px;
+  line-height: 1.6;
+}

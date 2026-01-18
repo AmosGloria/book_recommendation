@@ -2,6 +2,8 @@ import React, { useReducer, useEffect, useCallback } from "react";
 import SelectField from "./components/select/page";
 import listOfGenreOption from "./store/genre.json";
 import listOfMoodOption from "./store/mood.json";
+import './components/styles/styles.css'
+
 
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
@@ -57,7 +59,8 @@ export default function App() {
       const prompt = `You are a professional librarian. 
         Recommend 6 REAL books for a ${state.level} ${state.genre} reader feeling ${state.mood}.
         Format each as: Title by Author (Year) - Explain why.
-        If you aren't 100% sure about a book's existence, do not include it.`;
+        If you aren't 100% sure about a book's existence, do not include it.
+        `;
 
       const response = await fetch(
         `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`,
@@ -87,7 +90,7 @@ export default function App() {
   }, [state.genre]);
 
   return (
-    <section>
+    <section className="app">
       <SelectField
         placeholder="Please select a genre"
         id="genre"
